@@ -177,9 +177,8 @@ public class Date implements Comparable<Date>
                 && this.day < that.day))
             return -1;
         else if ((this.year > that.year)
-                || (/*this.year == that.year && */this.month > that.month)
-                || (/*this.year == that.year && this.month == that.month &&*/
-                this.day > that.day))
+                || (this.month > that.month)
+                || (this.day > that.day))
             return 1;
 
         return 0;

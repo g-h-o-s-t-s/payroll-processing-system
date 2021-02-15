@@ -40,6 +40,14 @@ public class Parttime extends Employee
     }
 
     /**
+     * Getter for number of hours worked by this Parttime
+     * @return int value of hours worked
+     */
+    public int getHoursWorked() {
+        return hoursWorked;
+    }
+
+    /**
      * Returns a message formatting the contents of Parttime object.
      * @return String literal containing Parttime field values
      */

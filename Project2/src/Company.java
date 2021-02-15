@@ -126,9 +126,11 @@ public class Company
         if (setThis == -1)
             return false;
 
-        //((Parttime) emplist[setThis]).setHoursWorked();
-        //where do we get the hours value if setHours() only gets an
-        //Employee parameter, and not an int hours parameter???
+        //cast both Employee parameter and corresponding Employee in emplist
+        //to Parttime class, set hours of Employee in emplist to the hours
+        //of the Employee parameter
+        ((Parttime) emplist[setThis]).setHoursWorked(
+                ((Parttime) employee).getHoursWorked());
 
         return true;
     }
