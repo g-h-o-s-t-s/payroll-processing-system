@@ -11,11 +11,36 @@ public class Company
     private int numEmployee;
 
     /**
+     * Default constructor.
+     */
+    public Company()
+    {
+        emplist = new Employee[Consts.DEFAULT];
+        numEmployee = 0;
+    }
+
+    /**
+     * Method to determine if this Company is empty.
+     * @return true if this.emplist is empty, false otherwise
+     */
+    public boolean isEmpty()
+    {
+        return (this.numEmployee == 0);
+    }
+
+    /**
      * Searches through emplist for an object which matches key.
      * @param employee key to be matched to an object within emplist
      * @return integer value which holds the index of the object in emplist
      */
-    private int find(Employee employee) { return -1;}
+    private int find(Employee employee)
+    {
+        for (int i = 0; i < emplist.length; i++)
+            if ((emplist[i] != null) && emplist[i].equals(emplist))
+                return i;
+
+        return -1;
+    }
 
     /**
      * Grows the database list if the bag container emplist is full.
@@ -23,7 +48,14 @@ public class Company
      * to a full emplist[], grow() should first make room in the array for
      * an employee to be added safely.
      */
-    private void grow() { }
+    private void grow()
+    {
+        Employee[] temp = new Employee[emplist.length + Consts.GROW];
+        for (int i = 0; i < emplist.length; i++)
+            temp[i] = emplist[i];
+
+        emplist = temp;
+    }
 
     /**
      * Adds an employee object to database. Verifies that the profile
@@ -31,7 +63,26 @@ public class Company
      * @param employee object to be added to the database
      * @return true if add() succeeded, false otherwise
      */
-    public boolean add(Employee employee) { return true;}
+    public boolean add(Employee employee)
+    {
+        //verify validity of Employee parameter first
+        if (!employee.getProfile().isValid())
+            return false;
+
+        //bag is full, need to call grow()
+        if (numEmployee >= emplist.length)
+            grow();
+
+        for (int i = 0; i < emplist.length; i++)
+            if (emplist[i] == null)
+            {
+                emplist[i] = employee;
+                break;
+            }
+
+        numEmployee++;
+        return true;
+    }
 
     /**
      * Takes the given Employee object out of database.

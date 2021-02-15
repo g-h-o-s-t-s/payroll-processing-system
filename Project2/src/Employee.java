@@ -37,6 +37,15 @@ public class Employee
     }
 
     /**
+     * Getter for Profile field of this Employee object.
+     * @return Profile instance variable value
+     */
+    public Profile getProfile()
+    {
+        return profile;
+    }
+
+    /**
      * Returns a message formatting the contents of Employee object.
      * @return String literal containing Employee field values
      */

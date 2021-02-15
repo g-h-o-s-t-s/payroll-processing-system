@@ -6,6 +6,8 @@
 public class Consts
 {
     /* Company() class constants */
+    public static final int DEFAULT = 1;
+    public static final int GROW = 4;
 
 
     /* Date() class constants - reused from Project1 */
@@ -49,6 +51,10 @@ public class Consts
 
 
     /* Profile() class constants */
+    public static final int SUBSTRINGS = 2;
+    public static final String CS = "CS";
+    public static final String ECE = "ECE";
+    public static final String IT = "IT";
 
 
 

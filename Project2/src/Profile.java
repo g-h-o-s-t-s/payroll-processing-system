@@ -35,6 +35,21 @@ public class Profile
     }
 
     /**
+     * Verifies that Profile contains valid fields.
+     * String name must have two substrings and a comma, String department
+     * must be "CS", "ECE", or "IT", and dateHired must be a valid Date.
+     * @return true if Profile object contains valid fields, false otherwise
+     */
+    public boolean isValid()
+    {
+        return name.split(",").length == Consts.SUBSTRINGS
+                && (department.equals(Consts.CS)
+                    || department.equals(Consts.ECE)
+                    || department.equals(Consts.IT))
+                && dateHired.isValid();
+    }
+
+    /**
      * Returns a message formatting the contents of Profile object.
      * @return String literal containing Profile field values
      */
