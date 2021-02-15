@@ -23,15 +23,26 @@ public class Consts
     public static final int YEARMIN = 1900;
 
     /* Employee() class constants */
+    public static final int PAYPERIODS = 26;
 
 
     /* Fulltime() class constants */
 
 
     /* Management() class constants */
+    public static final double MANAGER_BONUS = 192.31;
+    public static final double DEPHEAD_BONUS = 365.38;
+    public static final double DIRECTOR_BONUS = 461.54;
+    public static final int MA_CODE = 1;
+    public static final int DH_CODE = 2;
+    public static final int DI_CODE = 3;
+
 
 
     /* Parttime() class constants */
+    public static final int FULLHOURS = 80;
+    public static final double OVERTIME_RATE = 1.50;
+    public static final String HOURLYPAY_MSG = "::Hourly Rate $";
 
 
     /* PayrollProcessing() class constants - Client */

@@ -12,6 +12,29 @@ public class Profile
     //TO-DO: add methods as needed
 
     /**
+     * Default constructor for Profile.
+     */
+    public Profile()
+    {
+        name = "";
+        department = "";
+        dateHired = new Date();
+    }
+
+    /**
+     * Parameterized constructor for Profile.
+     * @param n String which contains Employee name
+     * @param d String which contains Employee's assigned department
+     * @param dh Date representing the day Employee was hired
+     */
+    public Profile(String n, String d, Date dh)
+    {
+        name = n;
+        department = d;
+        dateHired = dh;
+    }
+
+    /**
      * Returns a message formatting the contents of Profile object.
      * @return String literal containing Profile field values
      */
@@ -29,7 +52,7 @@ public class Profile
     @Override
     public boolean equals(Object obj)
     {
-        //equals() first confirms invoking object & param are of the same class
+        //check if invoking object & param are of the same class
         if (getClass() != obj.getClass())
             return false;
 
