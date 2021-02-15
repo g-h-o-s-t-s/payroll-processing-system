@@ -49,6 +49,18 @@ public class Profile
                 && dateHired.isValid();
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public Date getDateHired() {
+        return dateHired;
+    }
+
     /**
      * Returns a message formatting the contents of Profile object.
      * @return String literal containing Profile field values

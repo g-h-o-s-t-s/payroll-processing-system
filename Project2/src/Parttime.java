@@ -31,6 +31,15 @@ public class Parttime extends Employee
     }
 
     /**
+     * Setting the value for the hours worked by this Parttime.
+     * @param hoursWorked value to set this.hoursWorked to
+     */
+    public void setHoursWorked(int hoursWorked)
+    {
+        this.hoursWorked = hoursWorked;
+    }
+
+    /**
      * Returns a message formatting the contents of Parttime object.
      * @return String literal containing Parttime field values
      */

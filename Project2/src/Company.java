@@ -4,6 +4,7 @@
  * set employee hours, and process payments.
  @author Sagnik Mukherjee, Michael Choe
  */
+@SuppressWarnings({"ManualArrayCopy", "RedundantIfStatement"})
 public class Company
 {
     //object fields
@@ -90,32 +91,139 @@ public class Company
      * @param employee object within emplist which will be set to null
      * @return true if remove() succeeded, false otherwise
      */
-    public boolean remove(Employee employee) { return true;}
+    public boolean remove(Employee employee)
+    {
+        int removeThis = find(employee);
+        if (removeThis == -1)
+            return false;
+
+        emplist[removeThis] = null;
+
+        //shift successive elements to the right
+        for (int i = removeThis + 1; i < emplist.length; i++)
+        {
+            int last = i - 1;
+            try
+            {
+                emplist[last] = emplist[i];
+            } catch (ArrayIndexOutOfBoundsException ex)
+            {
+                break;
+            }
+        }
+        numEmployee--;
+        return true;
+    }
 
     /**
      * Sets working hours for a given part-time employee.
      * @param employee object whose hoursWorked field will be assigned
      * @return true if setHours() succeeded, false otherwise
      */
-    public boolean setHours(Employee employee) { return true;}
+    public boolean setHours(Employee employee)
+    {
+        int setThis = find(employee);
+        if (setThis == -1)
+            return false;
+
+        //((Parttime) emplist[setThis]).setHoursWorked();
+        //where do we get the hours value if setHours() only gets an
+        //Employee parameter, and not an int hours parameter???
+
+        return true;
+    }
 
     /**
      * Processes payments for all employees in database.
+     * This is achieved by calling calculatePayment() for each Employee.
      */
-    public void processPayments() { }
+    public void processPayments()
+    {
+        for (Employee employee:emplist)
+            if (employee != null)
+                employee.calculatePayment();
+    }
 
     /**
      * Prints earning statements for all employees.
      */
-    public void print() { }
+    public void print()
+    {
+        for (Employee employee:emplist)
+            if (employee != null)
+                System.out.println(employee.toString());
+    }
 
     /**
-     * Prints earning statements by department.
+     * Prints earning statements, sorted by department.
      */
-    public void printByDepartment() { }
+    public void printByDepartment()
+    {
+        sortByDepartment(emplist);
+        print();
+    }
 
     /**
-     * Prints earning statements by date hired.
+     * Helper method for printByDepartment().
+     * Sorts array of Employees by department, alphabetically.
+     * @param emplist array containing list of employees
+     *
      */
-    public void printByDate() { }
+    private void sortByDepartment(Employee[] emplist)
+    {
+        for (int i = 1; i < emplist.length; i++)
+        {
+            int j = i - 1;
+            if (emplist[i] != null && emplist[j] != null)
+            {
+                Employee key = emplist[i];
+
+                while (j >= 0 && emplist[j] != null
+                        && emplist[j].getProfile().getDepartment().compareTo
+                            (key.getProfile().getDepartment()) > 0)
+                {
+                    emplist[j + 1] = emplist[j];
+                    j = j - 1;
+                }
+                emplist[j + 1] = key;
+            }
+        }
+    }
+
+    /**
+     * Prints earning statements, sorted by date hired.
+     */
+    public void printByDate()
+    {
+        sortByDate(emplist);
+        print();
+    }
+
+    /**
+     * Helper method for printByDate().
+     * Sorts array in ascending order of date that an Employee was hired.
+     * @param emplist array containing list of employees
+     *
+     */
+    private void sortByDate(Employee[] emplist)
+    {
+        //insertion sort, shift larger elements to the right as needed
+        for (int i = 1; i < emplist.length; i++)
+        {
+            int j = i - 1;
+            if (emplist[i] != null && emplist[j] != null)
+            {
+                Employee key = emplist[i];
+
+                while (j >= 0 && emplist[j] != null
+                        && (emplist[j].getProfile().getDateHired().compareTo
+                        (key.getProfile().getDateHired()) > 0))
+                {
+                    emplist[j + 1] = emplist[j];
+                    j = j - 1;
+                }
+                emplist[j + 1] = key;
+            }
+        }
+    }
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4149c206-6952-4469-9582-69c839e033a3" name="Default" comment="Constructors/methods for Profile, Employee and its subclasses.&#10;&#10;Company.java&#10;-JavaDoc comments on methods&#10;&#10;Employee, Fulltime, Management, Parttime, Profile&#10;-Filled out constructors, instance vars, methods, etc.&#10;&#10;Consts.java&#10;-Added a few constants as necessary for the Employee class and&#10;its subclasses.">
+    <list default="true" id="4149c206-6952-4469-9582-69c839e033a3" name="Default" comment="More Company methods, Parttime setter, Profile getters.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project2/src/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/src/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project2/src/Consts.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/src/Consts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project2/src/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/src/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project2/src/Parttime.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/src/Parttime.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project2/src/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/src/Profile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -169,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613348485096</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Company methods, Employee getter, Profile methods.&#10;&#10;Re-using some methods from array-basedlibrary project for Company, as well as some Constants added, Profile has an isValid() method now, which is used in add() in Company.">
+      <created>1613407704778</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1613407704778</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -208,7 +215,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Setup of all classes." />
     <MESSAGE value="Constructors/methods for Profile, Employee and its subclasses.&#10;&#10;Company.java&#10;-JavaDoc comments on methods&#10;&#10;Employee, Fulltime, Management, Parttime, Profile&#10;-Filled out constructors, instance vars, methods, etc.&#10;&#10;Consts.java&#10;-Added a few constants as necessary for the Employee class and&#10;its subclasses." />
-    <option name="LAST_COMMIT_MESSAGE" value="Constructors/methods for Profile, Employee and its subclasses.&#10;&#10;Company.java&#10;-JavaDoc comments on methods&#10;&#10;Employee, Fulltime, Management, Parttime, Profile&#10;-Filled out constructors, instance vars, methods, etc.&#10;&#10;Consts.java&#10;-Added a few constants as necessary for the Employee class and&#10;its subclasses." />
+    <MESSAGE value="Company methods, Employee getter, Profile methods.&#10;&#10;Re-using some methods from array-basedlibrary project for Company, as well as some Constants added, Profile has an isValid() method now, which is used in add() in Company." />
+    <MESSAGE value="More Company methods, Parttime setter, Profile getters." />
+    <option name="LAST_COMMIT_MESSAGE" value="More Company methods, Parttime setter, Profile getters." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Project2/src/Fulltime.java">
