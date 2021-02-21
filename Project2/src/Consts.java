@@ -59,7 +59,31 @@ public class Consts
 
 
     /* PayrollProcessing() class constants - Client */
+    public static final int SPLITONE = 0;
+    public static final int SPLITTWO = 1;
+    public static final int SPLITTHREE = 2;
+    public static final int SPLITFOUR = 3;
+    public static final int SPLITFIVE = 4;
 
+    public static final int FOURINPUTS = 4;
+    public static final int FIVEINPUTS = 5;
+    public static final int SIXINPUTS = 6;
+
+    public static final String STARTUP = "Payroll Processing starts.";
+    public static final String QUIT = "Q";
+    public static final String ADDPARTTIME = "AP";
+    public static final String ADDFULLTIME = "AF";
+    public static final String ADDFULLROLE = "AM";
+    public static final String REMOVE = "R";
+    public static final String CALCULATE = "C";
+    public static final String SET = "S";
+    public static final String PRINTALL = "PA";
+    public static final String PRINTHIRED = "PH";
+    public static final String PRINTDEPART = "PD";
+    public static final String INVALIDCOMMAND = "Invalid command!";
+    public static final String SHUTDOWN = "Payroll Processing completed.";
+    public static final String ISEMPTY = "Employee database is empty.";
+    public static final String LISTHEADER = "--Printing earning for all employees";
 
     /* Profile() class constants */
     public static final int SUBSTRINGS = 2;
