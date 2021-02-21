@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4149c206-6952-4469-9582-69c839e033a3" name="Default" comment="CompanyTest JUnit completed.&#10;&#10;TO-DO: ManagementTest, PayrollProcessing, Class Diagram, JavaDoc Generation&#10;&#10;-tweaked Company.setHours to avoid ClassCastException&#10;-added more Constants&#10;-formatted float values in Employee+subclasses&#10;-tweaked equals() and toString() for Employee+subclasses&#10;-tweaked Management constructor/getter">
+    <list default="true" id="4149c206-6952-4469-9582-69c839e033a3" name="Default" comment="fixed up PayrollProcessing, added try-catches">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project2/src/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/src/Company.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project2/src/Consts.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/src/Consts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project2/src/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/src/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project2/src/PayrollProcessing.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/src/PayrollProcessing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/payroll-processing-system/Company.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/payroll-processing-system/Company.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/payroll-processing-system/Consts.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/payroll-processing-system/Consts.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/payroll-processing-system/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/payroll-processing-system/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/payroll-processing-system/Fulltime.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/payroll-processing-system/Fulltime.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/payroll-processing-system/Management.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/payroll-processing-system/Management.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/payroll-processing-system/Parttime.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/payroll-processing-system/Parttime.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/payroll-processing-system/PayrollProcessing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/payroll-processing-system/PayrollProcessing.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +149,15 @@
       <command value="open arraybased-library" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CompanyTest">
+  <component name="RunManager" selected="Application.RunProject2">
+    <configuration name="RunProject2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RunProject2" />
+      <module name="payroll-processing-system" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -203,6 +214,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.RunProject2" />
         <item itemvalue="JUnit.CompanyTest" />
         <item itemvalue="JUnit.CompanyTest.remove" />
         <item itemvalue="JUnit.CompanyTest.add" />
@@ -266,7 +278,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613881895982</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fixed up PayrollProcessing, added try-catches">
+      <created>1613925718576</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1613925718576</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -309,7 +328,8 @@
     <MESSAGE value="More Company methods, Parttime setter, Profile getters." />
     <MESSAGE value="Company.setHours() fulfilled, Parttime getter." />
     <MESSAGE value="CompanyTest JUnit completed.&#10;&#10;TO-DO: ManagementTest, PayrollProcessing, Class Diagram, JavaDoc Generation&#10;&#10;-tweaked Company.setHours to avoid ClassCastException&#10;-added more Constants&#10;-formatted float values in Employee+subclasses&#10;-tweaked equals() and toString() for Employee+subclasses&#10;-tweaked Management constructor/getter" />
-    <option name="LAST_COMMIT_MESSAGE" value="CompanyTest JUnit completed.&#10;&#10;TO-DO: ManagementTest, PayrollProcessing, Class Diagram, JavaDoc Generation&#10;&#10;-tweaked Company.setHours to avoid ClassCastException&#10;-added more Constants&#10;-formatted float values in Employee+subclasses&#10;-tweaked equals() and toString() for Employee+subclasses&#10;-tweaked Management constructor/getter" />
+    <MESSAGE value="fixed up PayrollProcessing, added try-catches" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed up PayrollProcessing, added try-catches" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Project2/src/Fulltime.java">

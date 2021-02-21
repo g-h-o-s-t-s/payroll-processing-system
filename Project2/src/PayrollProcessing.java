@@ -30,7 +30,7 @@ public class PayrollProcessing
                 continue;
             }
 
-            inputs = input.split(" \t");
+            inputs = input.split(" ");
             String command = inputs[Consts.SPLITONE];
             switch (command) {
                 case Consts.ADDPARTTIME:

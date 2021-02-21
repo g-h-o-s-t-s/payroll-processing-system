@@ -33,14 +33,14 @@ public class Consts
 
     /* Employee() class constants */
     public static final int PAYPERIODS = 26;
-    public static final String PAYCHECK_MSG = "::Payment $";
+    public static final String PAYCHECK_MSG = "::Payment ";
     public static final String SEPARATOR = "::";
     public static final DecimalFormat df
-            = new DecimalFormat("$ #,##0.00");
+            = new DecimalFormat("$#,##0.00");
 
 
     /* Fulltime() class constants */
-    public static final String SALARY_MSG = "::Annual Salary $";
+    public static final String SALARY_MSG = "::Annual Salary ";
 
 
     /* Management() class constants */
@@ -50,15 +50,15 @@ public class Consts
     public static final int MA_CODE = 1;
     public static final int DH_CODE = 2;
     public static final int DI_CODE = 3;
-    public static final String MANAGER_MSG = "::Manager Compensation $";
-    public static final String DH_MSG = "::DepartmentHead Compensation $";
-    public static final String DIRECTOR_MSG = "::Director Compensation $";
+    public static final String MANAGER_MSG = "::Manager Compensation ";
+    public static final String DH_MSG = "::DepartmentHead Compensation ";
+    public static final String DIRECTOR_MSG = "::Director Compensation ";
 
 
     /* Parttime() class constants */
     public static final int FULLHOURS = 80;
     public static final double OVERTIME_RATE = 1.50;
-    public static final String HOURLYPAY_MSG = "::Hourly Rate $";
+    public static final String HOURLYPAY_MSG = "::Hourly Rate ";
     public static final String HOURS_MSG = "::Hours worked this period: ";
     public static final int PARTTIME_MAX = 100;
 
