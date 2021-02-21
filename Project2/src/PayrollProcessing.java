@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.InputMismatchException;
+import java.lang.NumberFormatException;
 /**
  * Client class, handles interaction with program user.
  * @author Sagnik Mukherjee, Michael Choe
@@ -16,10 +18,10 @@ public class PayrollProcessing
         Scanner scn = new Scanner(System.in);
         String input;
         String[] inputs;
-        int employeeCounter = 0;
         boolean loop = true;
 
-        while(loop && scn.hasNextLine()) {
+        while (loop && scn.hasNextLine())
+        {
             input = scn.nextLine();
             if (input.equals(""))
                 continue;
@@ -27,19 +29,18 @@ public class PayrollProcessing
                 loop = false;
                 continue;
             }
+
+            inputs = input.split(" \t");
             String command = inputs[Consts.SPLITONE];
             switch (command) {
                 case Consts.ADDPARTTIME:
                     addPartTime(inputs, company);
-                    employeeCounter++;
                     break;
                 case Consts.ADDFULLTIME:
                     addFullTime(inputs, company);
-                    employeeCounter++;
                     break;
                 case Consts.ADDFULLROLE:
                     addFullRole(inputs, company);
-                    employeeCounter++;
                     break;
                 case Consts.REMOVE:
                     removeEmployee(inputs, company);
@@ -51,29 +52,30 @@ public class PayrollProcessing
                     setHours(inputs, company);
                     break;
                 case Consts.PRINTALL:
-                    if(company.isEmpty()){
+                    if (company.isEmpty())
                         printout(Consts.ISEMPTY);
-                    }else{
-                        System.out.println(Consts.LISTHEADER);
+                    else {
+                        System.out.println(Consts.PRINT_HEADER);
                         company.print();
                     }
                     break;
                 case Consts.PRINTHIRED:
-                    if(company.isEmpty()){
+                    if (company.isEmpty())
                         printout(Consts.ISEMPTY);
-                    }else{
-                        System.out.println(Consts.LISTHEADER);
+                    else {
+                        System.out.println(Consts.PRINTDATE_HEADER);
                         company.printByDate();
                     }
                     break;
                 case Consts.PRINTDEPART:
-                    if(company.isEmpty()){
+                    if (company.isEmpty())
                         printout(Consts.ISEMPTY);
-                    }else{
-                        System.out.println(Consts.LISTHEADER);
+                    else {
+                        System.out.println(Consts.PRINTDEP_HEADER);
                         company.printByDepartment();
                     }
                     break;
+
                 default:
                     printout(Consts.INVALIDCOMMAND);
                     break;
@@ -88,27 +90,30 @@ public class PayrollProcessing
      * @param company Company, reference pass of company bag container
      */
     private void addPartTime(String[] inputs, Company company){
-        if(inputs.length == Consts.FIVEINPUTS){
-            String name = inputs[Consts.SPLITTWO];
-            String department = inputs[Consts.SPLITTHREE];
-            String date = inputs[Consts.SPLITFOUR];
-            Profile newEmployee = new Profile(name, department, date);
+        if (inputs.length == Consts.FIVEINPUTS){
+            try {
+                String name = inputs[Consts.SPLITTWO];
+                String department = inputs[Consts.SPLITTHREE];
+                String dateStr = inputs[Consts.SPLITFOUR];
+                double pay = Double.parseDouble(inputs[Consts.SPLITFIVE]);
 
-            String pay = inputs[Consts.SPLITFIVE];
-            String type = "PART TIME";
+                Date date = new Date(dateStr);
+                Profile newEmployee = new Profile(name, department, date);
+                String type = Consts.PARTTIME;
 
+                 if (date.isValid()){
+                    Employee addThis = new Employee(newEmployee, pay, type);
+                    company.add(addThis);
+                    printout("Employee added");
+                } else
+                     printout("Invalid Date!");
 
-            Date check = new Date(date);
-             if(check.isValid()){
-                Employee addThis = new Employee(newEmployee, pay, type);
-                company.add(addThis);
-                printout("Employee added");
-            }else {
-                 printout("Invalid Date!");
-             }
-        }else{
-            printout(Consts.INVALIDCOMMAND);
+            } catch (InputMismatchException | NumberFormatException ex) {
+                printout(Consts.INVALIDCOMMAND);
+            }
         }
+        else
+            printout(Consts.INVALIDCOMMAND);
     }
 
     /**
@@ -117,30 +122,30 @@ public class PayrollProcessing
      * @param company Company, reference pass of company bag container
      */
     private void addFullTime(String[] inputs, Company company){
-        if(inputs.length == Consts.FIVEINPUTS){
-            String name = inputs[Consts.SPLITTWO];
-            String department = inputs[Consts.SPLITTHREE];
-            String date = inputs[Consts.SPLITFOUR];
-            String salary = inputs[Consts.SPLITFIVE];
-            Date check = new Date(date);
+        if (inputs.length == Consts.FIVEINPUTS) {
+            try {
+                String name = inputs[Consts.SPLITTWO];
+                String department = inputs[Consts.SPLITTHREE];
+                String dateStr = inputs[Consts.SPLITFOUR];
+                double pay = Double.parseDouble(inputs[Consts.SPLITFIVE]);
 
-            Profile newEmployee = new Profile(name, department, check);
+                Date date = new Date(dateStr);
+                Profile newEmployee = new Profile(name, department, date);
+                String type = Consts.FULLTIME;
 
-            String pay = inputs[Consts.SPLITFIVE];
-            String type = "FULL TIME";
+                if (date.isValid()) {
+                    Employee addThis = new Employee(newEmployee, pay, type);
+                    company.add(addThis);
+                    printout("Employee added");
+                } else
+                    printout("Invalid Date!");
 
-
-
-            if(check.isValid()){
-                Employee addThis = new Employee(newEmployee, pay, type);
-                company.add(addThis);
-                printout("Employee added");
-            }else {
-                printout("Invalid Date!");
+            } catch (InputMismatchException | NumberFormatException ex) {
+                printout(Consts.INVALIDCOMMAND);
             }
-        }else{
-            printout(Consts.INVALIDCOMMAND);
         }
+        else
+            printout(Consts.INVALIDCOMMAND);
     }
 
     /**
@@ -149,29 +154,32 @@ public class PayrollProcessing
      * @param company Company, reference pass of company bag container
      */
     private void addFullRole(String[] inputs, Company company){
-        if(inputs.length == Consts.SIXINPUTS){
-            String name = inputs[Consts.SPLITTWO];
-            String department = inputs[Consts.SPLITTHREE];
-            String date = inputs[Consts.SPLITFOUR];
-            String salary = inputs[Consts.SPLITFIVE];
-            Date check = new Date(date);
+        if (inputs.length == Consts.SIXINPUTS)
+        {
+            try {
+                String name = inputs[Consts.SPLITTWO];
+                String department = inputs[Consts.SPLITTHREE];
+                String date = inputs[Consts.SPLITFOUR];
+                double pay = Double.parseDouble(inputs[Consts.SPLITFIVE]);
 
-            Profile newEmployee = new Profile(name, department, check);
+                Date check = new Date(date);
+                Profile newEmployee = new Profile(name, department, check);
+                String type = Consts.FULLTIME;
 
-            String pay = inputs[Consts.SPLITFIVE];
-            String type = "FULL TIME";
+                if (check.isValid()){
+                    Employee addThis = new Employee(newEmployee, pay, type);
+                    company.add(addThis);
+                    printout("Employee added");
+                }
+                else
+                    printout("Invalid Date!");
 
-            if(check.isValid()){
-                Employee addThis = new Employee(newEmployee, pay, type);
-                company.add(addThis);
-                printout("Employee added");
-            }else {
-                printout("Invalid Date!");
+            } catch (InputMismatchException | NumberFormatException ex) {
+                printout(Consts.INVALIDCOMMAND);
             }
-        }else{
-            printout(Consts.INVALIDCOMMAND);
         }
-
+        else
+            printout(Consts.INVALIDCOMMAND);
     }
 
     /**
@@ -180,28 +188,29 @@ public class PayrollProcessing
      * @param company Company, reference pass of company bag container
      */
     private void removeEmployee(String[] inputs, Company company){
-        if(inputs.length == Consts.FOURINPUTS){
+        if (inputs.length == Consts.FOURINPUTS){
             try{
                 String name = inputs[Consts.SPLITTWO];
                 String department = inputs[Consts.SPLITTHREE];
-                String date = inputs[Consts.SPLITFOUR];
-                Date check = new Date(date);
+                String dateStr = inputs[Consts.SPLITFOUR];
+                Date date = new Date(dateStr);
 
-                Profile remove = new Profile(name, department, check);
+                Profile profile = new Profile(name, department, date);
                 Employee key = new Employee();
-                boolean removed = company.remove(key);
+                key.setProfile(profile);
 
-                if(removed){
+                if (company.remove(key))
                     printout("Employee removed.");
-                }else{
+                else
                     printout("Employee doesn't exist.");
-                }
-            }catch(){
+
+            } catch (InputMismatchException | NumberFormatException ex) {
                 printout(Consts.INVALIDCOMMAND);
             }
-        }else{
-            printout(Consts.INVALIDCOMMAND);
         }
+        else
+            printout(Consts.INVALIDCOMMAND);
+
     }
 
     /**
@@ -209,9 +218,14 @@ public class PayrollProcessing
      * @param inputs String[] reference pass of return value of split()
      * @param company Company, reference pass of company bag container
      */
-    private void calculate(String[] inputs, Company company) {
-
-        printout("Calculation of employee payments is done.");
+    private void calculate(String[] inputs, Company company)
+    {
+        if (inputs.length == Consts.ONEINPUT) {
+            company.processPayments();
+            printout("Calculation of employee payments is done.");
+        }
+        else
+            printout(Consts.INVALIDCOMMAND);
     }
 
     /**
@@ -220,12 +234,28 @@ public class PayrollProcessing
      * @param company Company, reference pass of company bag container
      */
     private void setHours(String[] inputs, Company company) {
-        for(int i = 0; i < company.length; i++){
-            if(/*name matches*/){
-                
+        if (inputs.length == Consts.FIVEINPUTS) {
+            try {
+                String name = inputs[Consts.SPLITTWO];
+                String department = inputs[Consts.SPLITTHREE];
+                String dateStr = inputs[Consts.SPLITFOUR];
+                int hoursToSet = Integer.parseInt(inputs[Consts.SPLITFIVE]);
+
+                Date date = new Date(dateStr);
+                Profile profile = new Profile(name, department, date);
+                Parttime key = new Parttime();
+                key.setProfile(profile);
+                key.setHoursWorked(hoursToSet);
+
+                if (company.remove(key))
+                    printout("Employee removed.");
+                else
+                    printout("Employee doesn't exist.");
+
+            } catch (InputMismatchException | NumberFormatException ex) {
+                printout(Consts.INVALIDCOMMAND);
             }
         }
-        printout("Working hours set.");
     }
 
     /**
@@ -236,5 +266,4 @@ public class PayrollProcessing
     private void printout(String str){
         System.out.println(str);
     }
-
 }

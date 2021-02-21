@@ -21,7 +21,7 @@ public class Employee
         profile = new Profile();
         payRate = 0.0;
         periodEarnings = 0.0;
-        timeType = "FULL TIME";
+        timeType = Consts.FULLTIME;
     }
 
     /**
@@ -88,10 +88,7 @@ public class Employee
             return false;
 
         Employee that = (Employee) obj;
-        return profile.equals(that.profile)
-                && payRate == that.payRate
-                && periodEarnings == that.periodEarnings
-                && timeType.equals(that.timeType);
+        return profile.equals(that.profile);
     }
 
     /**

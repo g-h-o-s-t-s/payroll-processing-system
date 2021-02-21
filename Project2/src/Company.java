@@ -4,7 +4,7 @@
  * set employee hours, and process payments.
  @author Sagnik Mukherjee, Michael Choe
  */
-@SuppressWarnings({"ManualArrayCopy", "RedundantIfStatement"})
+@SuppressWarnings({"ManualArrayCopy"})
 public class Company
 {
     //object fields

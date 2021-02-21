@@ -6,6 +6,11 @@ import java.text.DecimalFormat;
 @SuppressWarnings("WeakerAccess")
 public class Consts
 {
+    /* Constants which appear in multiple classes */
+    public static final String FULLTIME = "FULL TIME";
+    public static final String PARTTIME = "PART TIME";
+
+
     /* Company() class constants */
     public static final int DEFAULT = 1;
     public static final int GROW = 4;
@@ -24,6 +29,7 @@ public class Consts
     public static final int DEFAULTMAXDAYS = 31;
     //Used to represent earliest year possible for a given Date object.
     public static final int YEARMIN = 1900;
+
 
     /* Employee() class constants */
     public static final int PAYPERIODS = 26;
@@ -49,7 +55,6 @@ public class Consts
     public static final String DIRECTOR_MSG = "::Director Compensation $";
 
 
-
     /* Parttime() class constants */
     public static final int FULLHOURS = 80;
     public static final double OVERTIME_RATE = 1.50;
@@ -65,6 +70,7 @@ public class Consts
     public static final int SPLITFOUR = 3;
     public static final int SPLITFIVE = 4;
 
+    public static final int ONEINPUT = 1;
     public static final int FOURINPUTS = 4;
     public static final int FIVEINPUTS = 5;
     public static final int SIXINPUTS = 6;
@@ -83,15 +89,19 @@ public class Consts
     public static final String INVALIDCOMMAND = "Invalid command!";
     public static final String SHUTDOWN = "Payroll Processing completed.";
     public static final String ISEMPTY = "Employee database is empty.";
-    public static final String LISTHEADER = "--Printing earning for all employees";
+    public static final String PRINT_HEADER =
+            "--Printing earning statements for all employees--";
+    public static final String PRINTDEP_HEADER =
+            "--Printing earning statements by department--";
+    public static final String PRINTDATE_HEADER =
+            "--Printing earning statements by date hired--";
+
 
     /* Profile() class constants */
     public static final int SUBSTRINGS = 2;
     public static final String CS = "CS";
     public static final String ECE = "ECE";
     public static final String IT = "IT";
-
-
 
     /**
      * Constructor prevents other classes from instantiating objects of
