@@ -17,7 +17,7 @@ public class Parttime extends Employee
     public Parttime()
     {
         super();
-        hoursWorked = 0;
+        hoursWorked = Consts.DEFAULTHOURS;
     }
 
     /**
@@ -75,9 +75,7 @@ public class Parttime extends Employee
         if (!(obj instanceof Parttime))
             return false;
 
-        Parttime that = (Parttime) obj;
-        return super.equals(obj)
-                && hoursWorked == that.hoursWorked;
+        return super.equals(obj);
     }
 
     /**

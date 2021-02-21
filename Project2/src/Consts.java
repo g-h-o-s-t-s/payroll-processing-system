@@ -9,6 +9,9 @@ public class Consts
     /* Constants which appear in multiple classes */
     public static final String FULLTIME = "FULL TIME";
     public static final String PARTTIME = "PART TIME";
+    public static final int DEFAULTHOURS = 0;
+    public static final int NAMES = 2;
+    public static final double ZERO = 0.0;
 
 
     /* Company() class constants */
@@ -44,15 +47,17 @@ public class Consts
 
 
     /* Management() class constants */
-    public static final double MANAGER_BONUS = 192.31;
-    public static final double DEPHEAD_BONUS = 365.38;
-    public static final double DIRECTOR_BONUS = 461.54;
-    public static final int MA_CODE = 1;
-    public static final int DH_CODE = 2;
-    public static final int DI_CODE = 3;
-    public static final String MANAGER_MSG = "::Manager Compensation ";
-    public static final String DH_MSG = "::DepartmentHead Compensation ";
-    public static final String DIRECTOR_MSG = "::Director Compensation ";
+    //Fixed bonus compensation amounts.
+    public static final double MANAGER_BONUS = 192.31,
+            DEPHEAD_BONUS = 365.38, DIRECTOR_BONUS = 461.54;
+
+    //Management type codes.
+    public static final int MA_CODE = 1, DH_CODE = 2, DI_CODE = 3;
+
+    //toString components, according to Management type.
+    public static final String MANAGER_MSG = "::Manager Compensation ",
+            DH_MSG = "::DepartmentHead Compensation ",
+            DIRECTOR_MSG = "::Director Compensation ";
 
 
     /* Parttime() class constants */
@@ -64,44 +69,45 @@ public class Consts
 
 
     /* PayrollProcessing() class constants - Client */
-    public static final int SPLITONE = 0;
-    public static final int SPLITTWO = 1;
-    public static final int SPLITTHREE = 2;
-    public static final int SPLITFOUR = 3;
-    public static final int SPLITFIVE = 4;
+    //Constants used to restrict and validate input, and select a substring
+    //created by splitting the input line on whitespace.
+    public static final int SPLITONE = 0, SPLITTWO = 1, SPLITTHREE = 2,
+            SPLITFOUR = 3, SPLITFIVE = 4, SPLITSIX = 5,
+            ONEINPUT = 1, FOURINPUTS = 4, FIVEINPUTS = 5, SIXINPUTS = 6,
+            THREE = 3;
 
-    public static final int ONEINPUT = 1;
-    public static final int FOURINPUTS = 4;
-    public static final int FIVEINPUTS = 5;
-    public static final int SIXINPUTS = 6;
+    //Constants that represent status messages.
+    public static final String DELIMITER = " ";
+    public static final String STARTUP = "Payroll Processing starts.",
+            INVALID_INPUT = "Invalid input!",
+            INVALID_DATE = " is not a valid date.",
+            INVALID_NAME = " is not a valid name (last,first).",
+            INVALID_DEP = " is not a valid department code.",
+            INVALID_SALARY = "Salary cannot be negative.",
+            INVALID_PAYRATE = "Pay rate cannot be negative.",
+            INVALID_MGMT = "Invalid management code.",
+            CALCULATED = "Calculation of employee payments is done.",
+            ADDED = "Employee added.",
+            SHUTDOWN = "Payroll Processing completed.",
+            ISEMPTY = "Employee database is empty.";
 
-    public static final String STARTUP = "Payroll Processing starts.";
-    public static final String QUIT = "Q";
-    public static final String ADDPARTTIME = "AP";
-    public static final String ADDFULLTIME = "AF";
-    public static final String ADDFULLROLE = "AM";
-    public static final String REMOVE = "R";
-    public static final String CALCULATE = "C";
-    public static final String SET = "S";
-    public static final String PRINTALL = "PA";
-    public static final String PRINTHIRED = "PH";
-    public static final String PRINTDEPART = "PD";
-    public static final String INVALIDCOMMAND = "Invalid command!";
-    public static final String SHUTDOWN = "Payroll Processing completed.";
-    public static final String ISEMPTY = "Employee database is empty.";
-    public static final String PRINT_HEADER =
-            "--Printing earning statements for all employees--";
-    public static final String PRINTDEP_HEADER =
-            "--Printing earning statements by department--";
-    public static final String PRINTDATE_HEADER =
-            "--Printing earning statements by date hired--";
+    //Constants that indicate which client command to execute.
+    public static final String QUIT = "Q", ADDPARTTIME = "AP",
+            ADDFULLTIME = "AF", ADDFULLROLE = "AM", REMOVE = "R",
+            CALCULATE = "C", SET = "S", PRINTALL = "PA", PRINTHIRED = "PH",
+            PRINTDEPART = "PD";
+
+    //Constants that indicate which list header to print.
+    public static final String
+        PRINT_HEADER = "--Printing earning statements for all employees--",
+        PRINTDEP_HEADER = "--Printing earning statements by department--",
+        PRINTDATE_HEADER = "--Printing earning statements by date hired--";
 
 
     /* Profile() class constants */
-    public static final int SUBSTRINGS = 2;
-    public static final String CS = "CS";
-    public static final String ECE = "ECE";
-    public static final String IT = "IT";
+
+    //Possibilities for Employee department.
+    public static final String CS = "CS", ECE = "ECE", IT = "IT";
 
     /**
      * Constructor prevents other classes from instantiating objects of

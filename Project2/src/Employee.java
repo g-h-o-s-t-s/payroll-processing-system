@@ -19,8 +19,8 @@ public class Employee
     public Employee()
     {
         profile = new Profile();
-        payRate = 0.0;
-        periodEarnings = 0.0;
+        payRate = Consts.ZERO;
+        periodEarnings = Consts.ZERO;
         timeType = Consts.FULLTIME;
     }
 
@@ -32,7 +32,7 @@ public class Employee
     {
         profile = p;
         payRate = pr;
-        calculatePayment();
+        periodEarnings = Consts.ZERO;
         timeType = tw;
     }
 

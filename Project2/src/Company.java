@@ -146,9 +146,9 @@ public class Company
      */
     public void processPayments()
     {
-        for (Employee employee:emplist)
-            if (employee != null)
-                employee.calculatePayment();
+        for (int i = 0; i < numEmployee; i++)
+            if (emplist[i] != null)
+                emplist[i].calculatePayment();
     }
 
     /**
@@ -156,9 +156,9 @@ public class Company
      */
     public void print()
     {
-        for (Employee employee:emplist)
-            if (employee != null)
-                System.out.println(employee.toString());
+        for (int i = 0; i < numEmployee; i++)
+            if (emplist[i] != null)
+                System.out.println(emplist[i].toString());
     }
 
     /**

@@ -42,7 +42,7 @@ public class Profile
      */
     public boolean isValid()
     {
-        return name.split(",").length == Consts.SUBSTRINGS
+        return name.split(",").length == Consts.NAMES
                 && (department.equals(Consts.CS)
                     || department.equals(Consts.ECE)
                     || department.equals(Consts.IT))

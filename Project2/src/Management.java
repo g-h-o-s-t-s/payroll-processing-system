@@ -39,7 +39,7 @@ public class Management extends Fulltime
         else {
             Profile invalid = new Profile();
             super.setProfile(invalid);
-            bonusPay = 0.0;
+            bonusPay = Consts.MANAGER_BONUS;
         }
     }
 
@@ -83,10 +83,7 @@ public class Management extends Fulltime
         if (!(obj instanceof Management))
             return false;
 
-        Management that = (Management) obj;
-        return super.equals(obj)
-                && bonusPay == that.bonusPay
-                && code == that.code;
+        return super.equals(obj);
     }
 
     /**
