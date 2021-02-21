@@ -36,8 +36,20 @@ public class Management extends Fulltime
             bonusPay = Consts.DEPHEAD_BONUS;
         else if (code == Consts.DI_CODE)
             bonusPay = Consts.DIRECTOR_BONUS;
-        else
+        else {
+            Profile invalid = new Profile();
+            super.setProfile(invalid);
             bonusPay = 0.0;
+        }
+    }
+
+    /**
+     * Getter for periodEarnings field of this Management object.
+     * @return double periodEarnings instance variable value
+     */
+    public double getPeriodEarnings()
+    {
+        return super.getPeriodEarnings();
     }
 
     /**
@@ -48,12 +60,14 @@ public class Management extends Fulltime
     public String toString()
     {
         if (code == Consts.MA_CODE)
-            return super.toString() + "::Manager Compensation $" + bonusPay;
+            return super.toString()
+                    + Consts.MANAGER_MSG + Consts.df.format(bonusPay);
         else if (code == Consts.DH_CODE)
             return super.toString()
-                    + "::DepartmentHead Compensation $" + bonusPay;
+                    + Consts.DH_MSG + Consts.df.format(bonusPay);
         else if (code == Consts.DI_CODE)
-            return super.toString() + "::Director Compensation $" + bonusPay;
+            return super.toString()
+                    + Consts.DIRECTOR_MSG + Consts.df.format(bonusPay);
 
         return super.toString();
     }
@@ -66,7 +80,13 @@ public class Management extends Fulltime
     @Override
     public boolean equals(Object obj)
     {
-        return super.equals(obj);
+        if (!(obj instanceof Management))
+            return false;
+
+        Management that = (Management) obj;
+        return super.equals(obj)
+                && bonusPay == that.bonusPay
+                && code == that.code;
     }
 
     /**
@@ -75,6 +95,6 @@ public class Management extends Fulltime
     @Override
     public void calculatePayment()
     {
-        this.periodEarnings = payRate / Consts.PAYPERIODS + bonusPay;
+        periodEarnings = payRate / Consts.PAYPERIODS + bonusPay;
     }
 }

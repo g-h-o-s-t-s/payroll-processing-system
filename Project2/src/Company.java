@@ -30,14 +30,14 @@ public class Company
     }
 
     /**
-     * Searches through emplist for an object which matches key.
+     * Searches through emplist for an object which matches parameter key.
      * @param employee key to be matched to an object within emplist
      * @return integer value which holds the index of the object in emplist
      */
     private int find(Employee employee)
     {
         for (int i = 0; i < emplist.length; i++)
-            if ((emplist[i] != null) && emplist[i].equals(emplist))
+            if ((emplist[i] != null) && emplist[i].equals(employee))
                 return i;
 
         return -1;
@@ -126,11 +126,16 @@ public class Company
         if (setThis == -1)
             return false;
 
+        //verify type beforehand to avoid ClassCastException;
         //cast both Employee parameter and corresponding Employee in emplist
         //to Parttime class, set hours of Employee in emplist to the hours
         //of the Employee parameter
+        if (emplist[setThis] instanceof Parttime
+                && employee instanceof Parttime)
         ((Parttime) emplist[setThis]).setHoursWorked(
                 ((Parttime) employee).getHoursWorked());
+        else
+            return false;
 
         return true;
     }

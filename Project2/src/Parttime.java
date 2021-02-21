@@ -24,19 +24,24 @@ public class Parttime extends Employee
      * Parameterized constructor for Parttime.
      * @param p Profile which contains personal Parttime data
      */
-    public Parttime(Profile p, int pr, String tw, int hw)
+    public Parttime(Profile p, double pr, String tw, int hw)
     {
         super(p, pr, tw);
+        //intentionally invalidate Parttime object
+        if (hw > Consts.PARTTIME_MAX) {
+            Profile invalid = new Profile();
+            super.setProfile(invalid);
+        }
         hoursWorked = hw;
     }
 
     /**
      * Setting the value for the hours worked by this Parttime.
-     * @param hoursWorked value to set this.hoursWorked to
+     * @param hw value to set this.hoursWorked to
      */
-    public void setHoursWorked(int hoursWorked)
+    public void setHoursWorked(int hw)
     {
-        this.hoursWorked = hoursWorked;
+        hoursWorked = hw;
     }
 
     /**
@@ -54,8 +59,9 @@ public class Parttime extends Employee
     @Override
     public String toString()
     {
-        return super.toString() + Consts.HOURLYPAY_MSG + payRate
-                + "::Hours worked this period: " + hoursWorked;
+        return super.toString()
+                + Consts.HOURLYPAY_MSG + Consts.df.format(payRate)
+                + Consts.HOURS_MSG + hoursWorked;
     }
 
     /**
@@ -66,7 +72,12 @@ public class Parttime extends Employee
     @Override
     public boolean equals(Object obj)
     {
-        return super.equals(obj);
+        if (!(obj instanceof Parttime))
+            return false;
+
+        Parttime that = (Parttime) obj;
+        return super.equals(obj)
+                && hoursWorked == that.hoursWorked;
     }
 
     /**
@@ -78,7 +89,7 @@ public class Parttime extends Employee
         int overtime = hoursWorked % Consts.FULLHOURS;
         int regularTime = hoursWorked - overtime;
         double overtimeRate = Consts.OVERTIME_RATE * payRate;
-        this.periodEarnings = (payRate * regularTime)
+        periodEarnings = (payRate * regularTime)
                 + (overtimeRate * overtime);
     }
 }

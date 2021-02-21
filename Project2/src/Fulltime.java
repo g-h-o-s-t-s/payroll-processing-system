@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 /**
  * Object class which represents a full-time worker, is of type Fulltime.
  @author Sagnik Mukherjee, Michael Choe
@@ -36,7 +37,8 @@ public class Fulltime extends Employee
     @Override
     public String toString()
     {
-        return super.toString() + "::Annual Salary $" + payRate;
+        return super.toString()
+                + Consts.SALARY_MSG + Consts.df.format(payRate);
     }
 
     /**
@@ -47,7 +49,10 @@ public class Fulltime extends Employee
     @Override
     public boolean equals(Object obj)
     {
-       return super.equals(obj);
+        if (!(obj instanceof Fulltime))
+            return false;
+
+        return super.equals(obj);
     }
 
     /**

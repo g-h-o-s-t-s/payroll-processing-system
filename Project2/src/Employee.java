@@ -46,14 +46,33 @@ public class Employee
     }
 
     /**
+     * Setter for Profile field of this Employee object.
+     * @param p Profile instance variable value to be set
+     */
+    public void setProfile(Profile p)
+    {
+        profile = p;
+    }
+
+    /**
+     * Getter for periodEarnings field of this Employee object.
+     * @return double periodEarnings instance variable value
+     */
+    public double getPeriodEarnings()
+    {
+        return periodEarnings;
+    }
+
+    /**
      * Returns a message formatting the contents of Employee object.
      * @return String literal containing Employee field values
      */
     @Override
     public String toString()
     {
-        return profile.toString() + "::Payment $" + periodEarnings
-                + "::" + timeType;
+        return profile.toString() + Consts.PAYCHECK_MSG
+                + Consts.df.format(periodEarnings)
+                + Consts.SEPARATOR + timeType;
     }
 
     /**
@@ -65,14 +84,14 @@ public class Employee
     public boolean equals(Object obj)
     {
         //check if invoking object & param are of the same class
-        if (obj instanceof  Employee) //null if obj is not of type Employee
+        if (!(obj instanceof Employee)) //null if obj is not of type Employee
             return false;
 
         Employee that = (Employee) obj;
-        return this.profile.equals(that.profile)
-                && this.payRate == that.payRate
-                && this.periodEarnings == that.periodEarnings
-                && this.timeType.equals(that.timeType);
+        return profile.equals(that.profile)
+                && payRate == that.payRate
+                && periodEarnings == that.periodEarnings
+                && timeType.equals(that.timeType);
     }
 
     /**
@@ -80,7 +99,6 @@ public class Employee
      */
     public void calculatePayment()
     {
-        //??? not the way to do this, likely
-        this.periodEarnings = payRate / Consts.PAYPERIODS;
+        periodEarnings = payRate / Consts.PAYPERIODS;
     }
 }
