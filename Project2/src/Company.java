@@ -40,7 +40,7 @@ public class Company
             if ((emplist[i] != null) && emplist[i].equals(employee))
                 return i;
 
-        return -1;
+        return Consts.NOTFOUND;
     }
 
     /**
@@ -66,8 +66,10 @@ public class Company
      */
     public boolean add(Employee employee)
     {
-        //verify validity of Employee parameter first
-        if (!employee.getProfile().isValid())
+        //do not add duplicate employee, and validate profile
+        int alreadyInList = find(employee);
+        if (alreadyInList != Consts.NOTFOUND
+                || !employee.getProfile().isValid())
             return false;
 
         //bag is full, need to call grow()
@@ -94,7 +96,7 @@ public class Company
     public boolean remove(Employee employee)
     {
         int removeThis = find(employee);
-        if (removeThis == -1)
+        if (removeThis == Consts.NOTFOUND)
             return false;
 
         emplist[removeThis] = null;
@@ -123,7 +125,7 @@ public class Company
     public boolean setHours(Employee employee)
     {
         int setThis = find(employee);
-        if (setThis == -1)
+        if (setThis == Consts.NOTFOUND)
             return false;
 
         //verify type beforehand to avoid ClassCastException;

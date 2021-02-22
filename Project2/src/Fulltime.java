@@ -6,12 +6,7 @@ import java.text.DecimalFormat;
 public class Fulltime extends Employee
 {
     // object fields
-//    private Profile profile;
     private double payRate;
-//    private double periodEarnings;
-//    private String timeType;
-
-    //TO-DO: add methods as needed
 
     /**
      * Default constructor for Fulltime.

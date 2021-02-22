@@ -9,8 +9,6 @@ public class Profile
     private String department; //department code: CS, ECE, IT
     private Date dateHired;
 
-    //TO-DO: add methods as needed
-
     /**
      * Default constructor for Profile.
      */

@@ -9,8 +9,6 @@ public class Parttime extends Employee
     private double periodEarnings;
     private int hoursWorked;
 
-    //TO-DO: add methods as needed
-
     /**
      * Default constructor for Parttime.
      */

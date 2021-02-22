@@ -1,4 +1,3 @@
-import java.io.InvalidObjectException;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.lang.NumberFormatException;
@@ -95,26 +94,13 @@ public class PayrollProcessing
         if (inputs.length == Consts.FIVEINPUTS) {
             try {
                 String name = inputs[Consts.SPLITTWO];
-                if (name.split(",").length != Consts.NAMES)
-                    throw new InputMismatchException("'" + name + "'"
-                            + Consts.INVALID_NAME);
-
                 String department = inputs[Consts.SPLITTHREE];
-                if (!(department.equals(Consts.CS)
-                        || department.equals(Consts.ECE)
-                        || department.equals(Consts.IT)))
-                    throw new InputMismatchException("'" + department + "'"
-                            + Consts.INVALID_DEP);
-
                 String dateStr = inputs[Consts.SPLITFOUR];
-                double pay = Double.parseDouble(inputs[Consts.SPLITFIVE]);
-                if (Double.compare(pay, Consts.ZERO) < 0)
-                    throw new InputMismatchException(Consts.INVALID_PAYRATE);
-
                 Date date = new Date(dateStr);
-                if (!date.isValid())
-                    throw new InputMismatchException(date.toString()
-                            + Consts.INVALID_DATE);
+                validateSharedInput(name, department, date);
+
+                double pay = Double.parseDouble(inputs[Consts.SPLITFIVE]);
+                validatePayRate(pay);
 
                 Profile profile = new Profile(name, department, date);
                 String type = Consts.PARTTIME;
@@ -122,7 +108,9 @@ public class PayrollProcessing
                 Parttime addThis = new Parttime(profile, pay, type, hw);
 
                  if (company.add(addThis))
-                    printout(Consts.ADDED);
+                     printout(Consts.ADDED);
+                 else
+                     printout(Consts.DUPLICATE);
 
             } catch (InputMismatchException | NumberFormatException ex) {
                 printout(ex.getMessage());
@@ -141,33 +129,22 @@ public class PayrollProcessing
         if (inputs.length == Consts.FIVEINPUTS) {
             try {
                 String name = inputs[Consts.SPLITTWO];
-                if (name.split(",").length != Consts.NAMES)
-                    throw new InputMismatchException("'" + name + "'"
-                            + Consts.INVALID_NAME);
-
                 String department = inputs[Consts.SPLITTHREE];
-                if (!(department.equals(Consts.CS)
-                        || department.equals(Consts.ECE)
-                        || department.equals(Consts.IT)))
-                    throw new InputMismatchException("'" + department + "'"
-                            + Consts.INVALID_DEP);
-
                 String dateStr = inputs[Consts.SPLITFOUR];
-                double pay = Double.parseDouble(inputs[Consts.SPLITFIVE]);
-                if (Double.compare(pay, Consts.ZERO) < 0)
-                    throw new InputMismatchException(Consts.INVALID_SALARY);
-
                 Date date = new Date(dateStr);
-                if (!date.isValid())
-                    throw new InputMismatchException(date.toString()
-                            + Consts.INVALID_DATE);
+                validateSharedInput(name, department, date);
+
+                double pay = Double.parseDouble(inputs[Consts.SPLITFIVE]);
+                validateSalary(pay);
 
                 Profile profile = new Profile(name, department, date);
                 String type = Consts.FULLTIME;
                 Fulltime addThis = new Fulltime(profile, pay, type);
 
                 if (company.add(addThis))
-                    printout("Employee added.");
+                    printout(Consts.ADDED);
+                else
+                    printout(Consts.DUPLICATE);
 
             } catch (InputMismatchException | NumberFormatException ex) {
                 printout(ex.getMessage());
@@ -189,39 +166,26 @@ public class PayrollProcessing
         {
             try {
                 String name = inputs[Consts.SPLITTWO];
-                if (name.split(",").length != Consts.NAMES)
-                    throw new InputMismatchException("'" + name + "'"
-                            + Consts.INVALID_NAME);
-
                 String department = inputs[Consts.SPLITTHREE];
-                if (!(department.equals(Consts.CS)
-                        || department.equals(Consts.ECE)
-                        || department.equals(Consts.IT)))
-                    throw new InputMismatchException("'" + department + "'"
-                            + Consts.INVALID_DEP);
-
                 String dateStr = inputs[Consts.SPLITFOUR];
                 Date date = new Date(dateStr);
-                if (!date.isValid())
-                    throw new InputMismatchException(date.toString()
-                            + Consts.INVALID_DATE);
+                validateSharedInput(name, department, date);
 
                 double pay = Double.parseDouble(inputs[Consts.SPLITFIVE]);
                 //handles -0.0, though this input is unlikely
-                if (Double.compare(pay, Consts.ZERO) < 0)
-                    throw new InputMismatchException(Consts.INVALID_SALARY);
+                validateSalary(pay);
 
                 int code = Integer.parseInt(inputs[Consts.SPLITSIX]);
-                if (!(pay > Consts.ZERO && pay < Consts.THREE))
-                    throw new InputMismatchException(Consts.INVALID_MGMT);
+                validateCode(code);
 
                 String type = Consts.FULLTIME;
                 Profile profile = new Profile(name, department, date);
                 Management addThis = new Management(profile, pay, type, code);
 
                 if (company.add(addThis))
-                    printout("Employee added.");
-
+                    printout(Consts.ADDED);
+                else
+                    printout(Consts.DUPLICATE);
             } catch (InputMismatchException | NumberFormatException ex) {
                 printout(ex.getMessage());
             }
@@ -243,31 +207,19 @@ public class PayrollProcessing
         else if (inputs.length == Consts.FOURINPUTS) {
             try {
                 String name = inputs[Consts.SPLITTWO];
-                if (name.split(",").length != Consts.NAMES)
-                    throw new InputMismatchException("'" + name + "'"
-                            + Consts.INVALID_NAME);
-
                 String department = inputs[Consts.SPLITTHREE];
-                if (!(department.equals(Consts.CS)
-                        || department.equals(Consts.ECE)
-                        || department.equals(Consts.IT)))
-                    throw new InputMismatchException("'" + department + "'"
-                            + Consts.INVALID_DEP);
-
                 String dateStr = inputs[Consts.SPLITFOUR];
                 Date date = new Date(dateStr);
-                if (!date.isValid())
-                    throw new InputMismatchException(date.toString()
-                            + Consts.INVALID_DATE);
+                validateSharedInput(name, department, date);
 
                 Profile profile = new Profile(name, department, date);
                 Employee key = new Employee();
                 key.setProfile(profile);
 
                 if (company.remove(key))
-                    printout("Employee removed.");
+                    printout(Consts.REMOVED);
                 else
-                    printout("Employee doesn't exist.");
+                    printout(Consts.NONEXISTENT);
 
             } catch (InputMismatchException | NumberFormatException ex) {
                 printout(ex.getMessage());
@@ -305,24 +257,13 @@ public class PayrollProcessing
         else if (inputs.length == Consts.FIVEINPUTS) {
             try {
                 String name = inputs[Consts.SPLITTWO];
-                if (name.split(",").length != Consts.NAMES)
-                    throw new InputMismatchException("'" + name + "'"
-                            + Consts.INVALID_NAME);
-
                 String department = inputs[Consts.SPLITTHREE];
-                if (!(department.equals(Consts.CS)
-                        || department.equals(Consts.ECE)
-                        || department.equals(Consts.IT)))
-                    throw new InputMismatchException("'" + department + "'"
-                            + Consts.INVALID_DEP);
-
                 String dateStr = inputs[Consts.SPLITFOUR];
-                int hoursToSet = Integer.parseInt(inputs[Consts.SPLITFIVE]);
-
                 Date date = new Date(dateStr);
-                if (!date.isValid())
-                    throw new InputMismatchException(date.toString()
-                            + Consts.INVALID_DATE);
+                validateSharedInput(name, department, date);
+
+                int hoursToSet = Integer.parseInt(inputs[Consts.SPLITFIVE]);
+                validateHours(hoursToSet);
 
                 Profile profile = new Profile(name, department, date);
                 Parttime key = new Parttime();
@@ -330,9 +271,9 @@ public class PayrollProcessing
                 key.setHoursWorked(hoursToSet);
 
                 if (company.setHours(key))
-                    printout("Working hours set.");
+                    printout(Consts.SETHOURS);
                 else
-                    printout("Employee doesn't exist.");
+                    printout(Consts.NONEXISTENT);
 
             } catch (InputMismatchException | NumberFormatException ex) {
                 printout(ex.getMessage());
@@ -340,6 +281,67 @@ public class PayrollProcessing
         }
         else
             printout(Consts.INVALID_INPUT);
+    }
+
+    /**
+     * Helper method to validate common input among command-based helpers.
+     * @param name String Employee name to be validated (last,first)
+     * @param dep String of department code to be validated (CS, ECE, or IT)
+     * @param date Date object to be validated, hiring date
+     */
+    private void validateSharedInput(String name, String dep, Date date)
+    {
+        if (name.split(",").length != Consts.NAMES)
+            throw new InputMismatchException("'" + name + "'"
+                    + Consts.INVALID_NAME);
+        if (!(dep.equals(Consts.CS)
+                || dep.equals(Consts.ECE)
+                || dep.equals(Consts.IT)))
+            throw new InputMismatchException("'" + dep + "'"
+                    + Consts.INVALID_DEP);
+        if (!date.isValid())
+            throw new InputMismatchException(date.toString()
+                    + Consts.INVALID_DATE);
+    }
+
+    /**
+     * Helper method to validate salary before adding a Fulltime/Management.
+     * @param pay double salary amount to be validated (positive value)
+     */
+    private void validateSalary(double pay)
+    {
+        if (Double.compare(pay, Consts.ZERO) < 0)
+            throw new InputMismatchException(Consts.INVALID_SALARY);
+    }
+
+    /**
+     * Helper method to validate hourly pay rate before adding a Parttime.
+     * @param pay double payRate amount to be validated (positive value)
+     */
+    private void validatePayRate(double pay)
+    {
+        if (Double.compare(pay, Consts.ZERO) < 0)
+            throw new InputMismatchException(Consts.INVALID_PAYRATE);
+    }
+
+    /**
+     * Helper method to validate code before adding a Management.
+     * @param code double salary amount to be validated (1, 2, or 3)
+     */
+    private void validateCode(int code)
+    {
+        if (!(code > Consts.ZERO && code < Consts.FOUR))
+            throw new InputMismatchException(Consts.INVALID_MGMT);
+    }
+
+    /**
+     * Helper method to validate salary before adding a Fulltime/Management.
+     * @param hoursToSet int hoursWorked to be validated (positive value)
+     */
+    private void validateHours(int hoursToSet)
+    {
+        if (hoursToSet < 0)
+            throw new InputMismatchException(Consts.INVALID_HOURS);
     }
 
     /**

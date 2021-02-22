@@ -11,8 +11,6 @@ public class Employee
     private double periodEarnings;
     private String timeType;
 
-    //TO-DO: add methods as needed
-
     /**
      * Default constructor for Employee.
      */

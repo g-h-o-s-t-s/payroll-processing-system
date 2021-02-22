@@ -12,6 +12,7 @@ public class Consts
     public static final int DEFAULTHOURS = 0;
     public static final int NAMES = 2;
     public static final double ZERO = 0.0;
+    public static final int NOTFOUND = -1;
 
 
     /* Company() class constants */
@@ -74,7 +75,7 @@ public class Consts
     public static final int SPLITONE = 0, SPLITTWO = 1, SPLITTHREE = 2,
             SPLITFOUR = 3, SPLITFIVE = 4, SPLITSIX = 5,
             ONEINPUT = 1, FOURINPUTS = 4, FIVEINPUTS = 5, SIXINPUTS = 6,
-            THREE = 3;
+            FOUR = 4;
 
     //Constants that represent status messages.
     public static final String DELIMITER = " ";
@@ -86,8 +87,13 @@ public class Consts
             INVALID_SALARY = "Salary cannot be negative.",
             INVALID_PAYRATE = "Pay rate cannot be negative.",
             INVALID_MGMT = "Invalid management code.",
+            INVALID_HOURS = "Working hours cannot be negative.",
             CALCULATED = "Calculation of employee payments is done.",
             ADDED = "Employee added.",
+            DUPLICATE = "Employee is already in the list.",
+            SETHOURS = "Working hours set.",
+            REMOVED = "Employee removed.",
+            NONEXISTENT = "Employee doesn't exist.",
             SHUTDOWN = "Payroll Processing completed.",
             ISEMPTY = "Employee database is empty.";
 

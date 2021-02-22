@@ -10,8 +10,6 @@ public class Management extends Fulltime
     private double bonusPay;
     private int code;
 
-    //TO-DO: add methods as needed
-
     /**
      * Default constructor for Management.
      */
