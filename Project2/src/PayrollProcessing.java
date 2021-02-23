@@ -103,14 +103,13 @@ public class PayrollProcessing
                 validatePayRate(pay);
 
                 Profile profile = new Profile(name, department, date);
-                String type = Consts.PARTTIME;
                 int hw = Consts.DEFAULTHOURS;
-                Parttime addThis = new Parttime(profile, pay, type, hw);
 
-                 if (company.add(addThis))
-                     printout(Consts.ADDED);
-                 else
-                     printout(Consts.DUPLICATE);
+                Parttime addThis = new Parttime(profile, pay, hw);
+                if (company.add(addThis))
+                    printout(Consts.ADDED);
+                else
+                    printout(Consts.DUPLICATE);
 
             } catch (InputMismatchException | NumberFormatException ex) {
                 printout(ex.getMessage());
@@ -138,9 +137,7 @@ public class PayrollProcessing
                 validateSalary(pay);
 
                 Profile profile = new Profile(name, department, date);
-                String type = Consts.FULLTIME;
-                Fulltime addThis = new Fulltime(profile, pay, type);
-
+                Fulltime addThis = new Fulltime(profile, pay);
                 if (company.add(addThis))
                     printout(Consts.ADDED);
                 else
@@ -160,7 +157,6 @@ public class PayrollProcessing
      * @param company Company, reference pass of company bag container
      */
     private void addFullRole(String[] inputs, Company company)
-            throws InputMismatchException
     {
         if (inputs.length == Consts.SIXINPUTS)
         {
@@ -178,10 +174,8 @@ public class PayrollProcessing
                 int code = Integer.parseInt(inputs[Consts.SPLITSIX]);
                 validateCode(code);
 
-                String type = Consts.FULLTIME;
                 Profile profile = new Profile(name, department, date);
-                Management addThis = new Management(profile, pay, type, code);
-
+                Management addThis = new Management(profile, pay, code);
                 if (company.add(addThis))
                     printout(Consts.ADDED);
                 else
@@ -236,7 +230,10 @@ public class PayrollProcessing
      */
     private void calculate(String[] inputs, Company company)
     {
-        if (inputs.length == Consts.ONEINPUT) {
+        if (company.isEmpty())
+            printout(Consts.ISEMPTY);
+
+        else if (inputs.length == Consts.ONEINPUT) {
             company.processPayments();
             printout(Consts.CALCULATED);
         }
@@ -290,6 +287,7 @@ public class PayrollProcessing
      * @param date Date object to be validated, hiring date
      */
     private void validateSharedInput(String name, String dep, Date date)
+            throws InputMismatchException
     {
         if (name.split(",").length != Consts.NAMES)
             throw new InputMismatchException("'" + name + "'"
@@ -308,7 +306,7 @@ public class PayrollProcessing
      * Helper method to validate salary before adding a Fulltime/Management.
      * @param pay double salary amount to be validated (positive value)
      */
-    private void validateSalary(double pay)
+    private void validateSalary(double pay) throws InputMismatchException
     {
         if (Double.compare(pay, Consts.ZERO) < 0)
             throw new InputMismatchException(Consts.INVALID_SALARY);
@@ -318,7 +316,7 @@ public class PayrollProcessing
      * Helper method to validate hourly pay rate before adding a Parttime.
      * @param pay double payRate amount to be validated (positive value)
      */
-    private void validatePayRate(double pay)
+    private void validatePayRate(double pay) throws InputMismatchException
     {
         if (Double.compare(pay, Consts.ZERO) < 0)
             throw new InputMismatchException(Consts.INVALID_PAYRATE);
@@ -328,9 +326,9 @@ public class PayrollProcessing
      * Helper method to validate code before adding a Management.
      * @param code double salary amount to be validated (1, 2, or 3)
      */
-    private void validateCode(int code)
+    private void validateCode(int code) throws InputMismatchException
     {
-        if (!(code > Consts.ZERO && code < Consts.FOUR))
+        if (!(code >= Consts.MA_CODE && code <= Consts.DI_CODE))
             throw new InputMismatchException(Consts.INVALID_MGMT);
     }
 
@@ -338,10 +336,12 @@ public class PayrollProcessing
      * Helper method to validate salary before adding a Fulltime/Management.
      * @param hoursToSet int hoursWorked to be validated (positive value)
      */
-    private void validateHours(int hoursToSet)
+    private void validateHours(int hoursToSet) throws InputMismatchException
     {
         if (hoursToSet < 0)
-            throw new InputMismatchException(Consts.INVALID_HOURS);
+            throw new InputMismatchException(Consts.INVALID_HOURS_A);
+        if (hoursToSet > Consts.PARTTIME_MAX)
+            throw new InputMismatchException(Consts.INVALID_HOURS_B);
     }
 
     /**

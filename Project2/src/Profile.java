@@ -2,10 +2,11 @@
  * Object class which contains company-relevant information of an employee.
  @author Sagnik Mukherjee, Michael Choe
  */
+@SuppressWarnings("FieldMayBeFinal")
 public class Profile
 {
     //object fields
-    private String name; //employee’s name in the form “lastname,firstname”
+    private String name; //employee's name in the form "lastname,firstname"
     private String department; //department code: CS, ECE, IT
     private Date dateHired;
 
@@ -47,14 +48,18 @@ public class Profile
                 && dateHired.isValid();
     }
 
-    public String getName() {
-        return name;
-    }
-
+    /**
+     * Getter for department title of this Employee object.
+     * @return String department instance variable value
+     */
     public String getDepartment() {
         return department;
     }
 
+    /**
+     * Getter for Date of this Employee object.
+     * @return Date dateHired instance variable value
+     */
     public Date getDateHired() {
         return dateHired;
     }
@@ -66,7 +71,8 @@ public class Profile
     @Override
     public String toString()
     {
-        return name + "::" + department + "::" + dateHired;
+        return name + Consts.SEPARATOR + department
+                + Consts.SEPARATOR + dateHired;
     }
 
     /**
@@ -78,12 +84,12 @@ public class Profile
     public boolean equals(Object obj)
     {
         //check if invoking object & param are of the same class
-        if (getClass() != obj.getClass())
+        if (!(obj instanceof Profile))
             return false;
 
         Profile that = (Profile) obj;
         return this.name.equals(that.name)
                 && this.department.equals(that.department)
-                && this.dateHired.equals(that.dateHired);
+                && this.dateHired.compareTo(that.dateHired) == Consts.ZERO;
     }
 }

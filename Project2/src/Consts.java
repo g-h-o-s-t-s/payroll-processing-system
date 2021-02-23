@@ -52,7 +52,7 @@ public class Consts
     public static final double MANAGER_BONUS = 192.31,
             DEPHEAD_BONUS = 365.38, DIRECTOR_BONUS = 461.54;
 
-    //Management type codes.
+    //Management type codes, also used in PayrollProcessing.
     public static final int MA_CODE = 1, DH_CODE = 2, DI_CODE = 3;
 
     //toString components, according to Management type.
@@ -74,11 +74,10 @@ public class Consts
     //created by splitting the input line on whitespace.
     public static final int SPLITONE = 0, SPLITTWO = 1, SPLITTHREE = 2,
             SPLITFOUR = 3, SPLITFIVE = 4, SPLITSIX = 5,
-            ONEINPUT = 1, FOURINPUTS = 4, FIVEINPUTS = 5, SIXINPUTS = 6,
-            FOUR = 4;
+            ONEINPUT = 1, FOURINPUTS = 4, FIVEINPUTS = 5, SIXINPUTS = 6;
 
     //Constants that represent status messages.
-    public static final String DELIMITER = " ";
+    public static final String DELIMITER = "\\s+";
     public static final String STARTUP = "Payroll Processing starts.",
             INVALID_INPUT = "Invalid input!",
             INVALID_DATE = " is not a valid date.",
@@ -87,7 +86,8 @@ public class Consts
             INVALID_SALARY = "Salary cannot be negative.",
             INVALID_PAYRATE = "Pay rate cannot be negative.",
             INVALID_MGMT = "Invalid management code.",
-            INVALID_HOURS = "Working hours cannot be negative.",
+            INVALID_HOURS_A = "Working hours cannot be negative.",
+            INVALID_HOURS_B = "Invalid Hours: over 100.",
             CALCULATED = "Calculation of employee payments is done.",
             ADDED = "Employee added.",
             DUPLICATE = "Employee is already in the list.",
@@ -110,7 +110,8 @@ public class Consts
         PRINTDATE_HEADER = "--Printing earning statements by date hired--";
 
 
-    /* Profile() class constants */
+    /* ManagementTest() class constants */
+    public static final double ROUNDING = 100.0;
 
     //Possibilities for Employee department.
     public static final String CS = "CS", ECE = "ECE", IT = "IT";

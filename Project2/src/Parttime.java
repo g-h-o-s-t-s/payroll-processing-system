@@ -5,8 +5,7 @@
 public class Parttime extends Employee
 {
     //object fields
-    private double payRate;
-    private double periodEarnings;
+    private final double hourlyPay;
     private int hoursWorked;
 
     /**
@@ -15,6 +14,7 @@ public class Parttime extends Employee
     public Parttime()
     {
         super();
+        hourlyPay = Consts.ZERO;
         hoursWorked = Consts.DEFAULTHOURS;
     }
 
@@ -22,15 +22,32 @@ public class Parttime extends Employee
      * Parameterized constructor for Parttime.
      * @param p Profile which contains personal Parttime data
      */
-    public Parttime(Profile p, double pr, String tw, int hw)
+    public Parttime(Profile p, double hp, int hw)
     {
-        super(p, pr, tw);
-        //intentionally invalidate Parttime object
-        if (hw > Consts.PARTTIME_MAX) {
+        super(p, Consts.ZERO);
+        hourlyPay = hp;
+        //intentionally invalidate Parttime object if max hours exceeded
+        if (hw > Consts.PARTTIME_MAX || hw < 0) {
             Profile invalid = new Profile();
             super.setProfile(invalid);
         }
         hoursWorked = hw;
+    }
+
+    /**
+     * Getter for periodEarnings of this Fulltime object.
+     * @return super.periodEarnings instance variable value
+     */
+    public double getPeriodEarnings() {
+        return super.getPeriodEarnings();
+    }
+
+    /**
+     * Setter for periodEarnings of this Fulltime object.
+     * @param pe value to set super.periodEarnings to
+     */
+    public void setPeriodEarnings(double pe) {
+        super.setPeriodEarnings(pe);
     }
 
     /**
@@ -57,9 +74,11 @@ public class Parttime extends Employee
     @Override
     public String toString()
     {
-        return super.toString()
-                + Consts.HOURLYPAY_MSG + Consts.df.format(payRate)
-                + Consts.HOURS_MSG + hoursWorked;
+        return super.toString() + Consts.PAYCHECK_MSG
+            + Consts.df.format(getPeriodEarnings())
+            + Consts.SEPARATOR + Consts.PARTTIME
+            + Consts.HOURLYPAY_MSG + Consts.df.format(hourlyPay)
+            + Consts.HOURS_MSG + hoursWorked;
     }
 
     /**
@@ -84,8 +103,9 @@ public class Parttime extends Employee
     {
         int overtime = hoursWorked % Consts.FULLHOURS;
         int regularTime = hoursWorked - overtime;
-        double overtimeRate = Consts.OVERTIME_RATE * payRate;
-        periodEarnings = (payRate * regularTime)
-                + (overtimeRate * overtime);
+        double overtimeRate = Consts.OVERTIME_RATE * hourlyPay;
+
+        double pe = (hourlyPay * regularTime) + (overtimeRate * overtime);
+        setPeriodEarnings(pe);
     }
 }

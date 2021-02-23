@@ -7,9 +7,7 @@ public class Employee
 {
     //object fields
     private Profile profile;
-    private double payRate;
     private double periodEarnings;
-    private String timeType;
 
     /**
      * Default constructor for Employee.
@@ -17,21 +15,17 @@ public class Employee
     public Employee()
     {
         profile = new Profile();
-        payRate = Consts.ZERO;
         periodEarnings = Consts.ZERO;
-        timeType = Consts.FULLTIME;
     }
 
     /**
      * Parameterized constructor for Employee.
      * @param p Profile which contains personal Employee data
      */
-    public Employee(Profile p, double pr, String tw)
+    public Employee(Profile p, double pe)
     {
         profile = p;
-        payRate = pr;
-        periodEarnings = Consts.ZERO;
-        timeType = tw;
+        periodEarnings = pe;
     }
 
     /**
@@ -53,12 +47,27 @@ public class Employee
     }
 
     /**
-     * Getter for periodEarnings field of this Employee object.
-     * @return double periodEarnings instance variable value
+     * Getter for periodEarnings of this Employee object.
+     * @return periodEarnings instance variable value
      */
-    public double getPeriodEarnings()
-    {
+    public double getPeriodEarnings() {
         return periodEarnings;
+    }
+
+    /**
+     * Setter for periodEarnings of this Employee object.
+     * @param pe value to set periodEarnings to
+     */
+    public void setPeriodEarnings(double pe) {
+        periodEarnings = pe;
+    }
+
+    /**
+     * Determines Employee compensation, reused in subclasses.
+     */
+    public void calculatePayment()
+    {
+        periodEarnings = Consts.ZERO;
     }
 
     /**
@@ -68,9 +77,7 @@ public class Employee
     @Override
     public String toString()
     {
-        return profile.toString() + Consts.PAYCHECK_MSG
-                + Consts.df.format(periodEarnings)
-                + Consts.SEPARATOR + timeType;
+        return profile.toString();
     }
 
     /**
@@ -86,14 +93,7 @@ public class Employee
             return false;
 
         Employee that = (Employee) obj;
-        return profile.equals(that.profile);
-    }
-
-    /**
-     * Determines Employee compensation based on data fields.
-     */
-    public void calculatePayment()
-    {
-        periodEarnings = payRate / Consts.PAYPERIODS;
+        return profile.equals(that.profile)
+                && this.periodEarnings == that.getPeriodEarnings();
     }
 }

@@ -1,4 +1,3 @@
-import java.text.DecimalFormat;
 /**
  * Object class which represents a full-time worker, is of type Fulltime.
  @author Sagnik Mukherjee, Michael Choe
@@ -6,7 +5,7 @@ import java.text.DecimalFormat;
 public class Fulltime extends Employee
 {
     // object fields
-    private double payRate;
+    private double annualSalary;
 
     /**
      * Default constructor for Fulltime.
@@ -14,15 +13,49 @@ public class Fulltime extends Employee
     public Fulltime()
     {
         super();
+        annualSalary = Consts.ZERO;
     }
 
     /**
      * Parameterized constructor for Fulltime.
      * @param p Profile which contains personal Fulltime data
      */
-    public Fulltime(Profile p, double pr, String tw)
+    public Fulltime(Profile p, double s)
     {
-        super(p, pr, tw);
+        super(p, Consts.ZERO);
+        annualSalary = s;
+    }
+
+    /**
+     * Getter for annualSalary of this Fulltime object.
+     * @return annualSalary instance variable value
+     */
+    public double getAnnualSalary() {
+        return annualSalary;
+    }
+
+    /**
+     * Setter for annualSalary of this Fulltime object.
+     * @param s value to set annualSalary to
+     */
+    public void setAnnualSalary(double s) {
+        annualSalary = s;
+    }
+
+    /**
+     * Getter for periodEarnings of this Fulltime object.
+     * @return super.periodEarnings instance variable value
+     */
+    public double getPeriodEarnings() {
+        return super.getPeriodEarnings();
+    }
+
+    /**
+     * Setter for periodEarnings of this Fulltime object.
+     * @param pe value to set super.periodEarnings to
+     */
+    public void setPeriodEarnings(double pe) {
+        super.setPeriodEarnings(pe);
     }
 
     /**
@@ -32,8 +65,10 @@ public class Fulltime extends Employee
     @Override
     public String toString()
     {
-        return super.toString()
-                + Consts.SALARY_MSG + Consts.df.format(payRate);
+        return super.toString()+ Consts.PAYCHECK_MSG
+                + Consts.df.format(getPeriodEarnings())
+                + Consts.SEPARATOR + Consts.FULLTIME
+                + Consts.SALARY_MSG + Consts.df.format(annualSalary);
     }
 
     /**
@@ -56,6 +91,7 @@ public class Fulltime extends Employee
     @Override
     public void calculatePayment()
     {
-        super.calculatePayment();
+        double pe = annualSalary / Consts.PAYPERIODS;
+        setPeriodEarnings(pe);
     }
 }

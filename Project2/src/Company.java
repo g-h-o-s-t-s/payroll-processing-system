@@ -26,7 +26,7 @@ public class Company
      */
     public boolean isEmpty()
     {
-        return (this.numEmployee == 0);
+        return (this.numEmployee == Consts.ZERO);
     }
 
     /**
@@ -37,7 +37,8 @@ public class Company
     private int find(Employee employee)
     {
         for (int i = 0; i < emplist.length; i++)
-            if ((emplist[i] != null) && emplist[i].equals(employee))
+            if ((emplist[i] != null) && (emplist[i].getProfile())
+                    .equals(employee.getProfile()))
                 return i;
 
         return Consts.NOTFOUND;
@@ -95,6 +96,9 @@ public class Company
      */
     public boolean remove(Employee employee)
     {
+        if (isEmpty())
+            return false;
+
         int removeThis = find(employee);
         if (removeThis == Consts.NOTFOUND)
             return false;
@@ -124,18 +128,25 @@ public class Company
      */
     public boolean setHours(Employee employee)
     {
+        if (isEmpty())
+            return false;
+
         int setThis = find(employee);
         if (setThis == Consts.NOTFOUND)
             return false;
 
         //verify type beforehand to avoid ClassCastException;
-        //cast both Employee parameter and corresponding Employee in emplist
+        //parameter is assumed to be Parttime, cast Employee in emplist
         //to Parttime class, set hours of Employee in emplist to the hours
         //of the Employee parameter
-        if (emplist[setThis] instanceof Parttime
-                && employee instanceof Parttime)
-        ((Parttime) emplist[setThis]).setHoursWorked(
-                ((Parttime) employee).getHoursWorked());
+        if (emplist[setThis] instanceof Parttime) {
+            int hoursToSet = ((Parttime) employee).getHoursWorked();
+            if (hoursToSet < 0 || hoursToSet > Consts.PARTTIME_MAX)
+                return false;
+
+            ((Parttime) emplist[setThis]).setHoursWorked(
+                    ((Parttime) employee).getHoursWorked());
+        }
         else
             return false;
 

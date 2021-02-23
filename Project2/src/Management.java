@@ -5,10 +5,8 @@
 public class Management extends Fulltime
 {
     //object fields
-    private double payRate;
-    private double periodEarnings;
-    private double bonusPay;
-    private int code;
+    private final double bonusPay;
+    private final int code;
 
     /**
      * Default constructor for Management.
@@ -16,17 +14,17 @@ public class Management extends Fulltime
     public Management()
     {
         super();
-        code = Consts.MA_CODE;
         bonusPay = Consts.MANAGER_BONUS;
+        code = Consts.MA_CODE;
     }
 
     /**
      * Parameterized constructor for Management.
      * @param p Profile which contains personal Management data
      */
-    public Management(Profile p, double pr, String tw, int c)
+    public Management(Profile p, double s, int c)
     {
-        super(p, pr, tw);
+        super(p, s);
         code = c;
         if (code == Consts.MA_CODE)
             bonusPay = Consts.MANAGER_BONUS;
@@ -37,17 +35,40 @@ public class Management extends Fulltime
         else {
             Profile invalid = new Profile();
             super.setProfile(invalid);
-            bonusPay = Consts.MANAGER_BONUS;
+            bonusPay = Consts.ZERO;
         }
     }
 
     /**
-     * Getter for periodEarnings field of this Management object.
-     * @return double periodEarnings instance variable value
+     * Getter for annualSalary of this Management object.
+     * @return super.annualSalary instance variable value
      */
-    public double getPeriodEarnings()
-    {
+    public double getAnnualSalary() {
+        return super.getAnnualSalary();
+    }
+
+    /**
+     * Setter for annualSalary of this Management object.
+     * @param s value to set super.annualSalary to
+     */
+    public void setAnnualSalary(double s) {
+        super.setAnnualSalary(s);
+    }
+
+    /**
+     * Getter for periodEarnings of this Management object.
+     * @return super.periodEarnings instance variable value
+     */
+    public double getPeriodEarnings() {
         return super.getPeriodEarnings();
+    }
+
+    /**
+     * Setter for periodEarnings of this Management object.
+     * @param pe value to set super.periodEarnings to
+     */
+    public void setPeriodEarnings(double pe) {
+        super.setPeriodEarnings(pe);
     }
 
     /**
@@ -90,6 +111,7 @@ public class Management extends Fulltime
     @Override
     public void calculatePayment()
     {
-        periodEarnings = payRate / Consts.PAYPERIODS + bonusPay;
+        double pe = getAnnualSalary() / Consts.PAYPERIODS + bonusPay;
+        setPeriodEarnings(pe);
     }
 }

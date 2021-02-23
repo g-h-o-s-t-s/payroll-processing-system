@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4149c206-6952-4469-9582-69c839e033a3" name="Default" comment="Extensive updates to try-catch behavior in PayrollProcessing.&#10;&#10;-the try-catch statements should be much more thorough">
+    <list default="true" id="4149c206-6952-4469-9582-69c839e033a3" name="Default" comment="Major Update.&#10;&#10;-reworked the object classes in terms of methods/fields.&#10;-streamlined CompanyTest, halved the amount of code used.&#10;-completed ManagementTest.">
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Sagnik_Mukherjee.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Sagnik_Mukherjee.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project2/JUnit Tests/CompanyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/JUnit Tests/CompanyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project2/JUnit Tests/ManagementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/JUnit Tests/ManagementTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project2/src/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/src/Company.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project2/src/Consts.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/src/Consts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project2/src/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/src/Employee.java" afterDir="false" />
@@ -11,6 +15,17 @@
       <change beforePath="$PROJECT_DIR$/Project2/src/Parttime.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/src/Parttime.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project2/src/PayrollProcessing.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/src/PayrollProcessing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project2/src/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project2/src/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/payroll-processing-system/Company.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/payroll-processing-system/Company.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/payroll-processing-system/Consts.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/payroll-processing-system/Consts.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/payroll-processing-system/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/payroll-processing-system/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/payroll-processing-system/Fulltime.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/payroll-processing-system/Fulltime.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/payroll-processing-system/Management.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/payroll-processing-system/Management.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/payroll-processing-system/Parttime.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/payroll-processing-system/Parttime.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/payroll-processing-system/PayrollProcessing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/payroll-processing-system/PayrollProcessing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/payroll-processing-system/Profile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/payroll-processing-system/Profile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/payroll-processing-system/CompanyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/payroll-processing-system/CompanyTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/payroll-processing-system/ManagementTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/payroll-processing-system/ManagementTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payroll-processing-system.iml" beforeDir="false" afterPath="$PROJECT_DIR$/payroll-processing-system.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +76,11 @@
         <option value="$PROJECT_DIR$/Project2/src/Company.java" />
       </list>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <hideBySeverity>
+      <option value="15" />
+    </hideBySeverity>
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
@@ -150,7 +170,7 @@
       <command value="," />
     </option>
   </component>
-  <component name="RunManager" selected="Application.RunProject2">
+  <component name="RunManager" selected="JUnit.CompanyTest">
     <configuration name="RunProject2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RunProject2" />
       <module name="payroll-processing-system" />
@@ -175,22 +195,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CompanyTest.add" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CompanyTest.setHours" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="payroll-processing-system" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CompanyTest" />
-      <option name="METHOD_NAME" value="add" />
+      <option name="METHOD_NAME" value="setHours" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CompanyTest.remove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ManagementTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="payroll-processing-system" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CompanyTest" />
-      <option name="METHOD_NAME" value="remove" />
+      <option name="MAIN_CLASS_NAME" value="ManagementTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ManagementTest.calculatePayment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="payroll-processing-system" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ManagementTest" />
+      <option name="METHOD_NAME" value="calculatePayment" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
@@ -215,10 +245,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.RunProject2" />
         <item itemvalue="JUnit.CompanyTest" />
-        <item itemvalue="JUnit.CompanyTest.remove" />
-        <item itemvalue="JUnit.CompanyTest.add" />
+        <item itemvalue="JUnit.ManagementTest" />
+        <item itemvalue="JUnit.ManagementTest.calculatePayment" />
+        <item itemvalue="JUnit.CompanyTest.setHours" />
+        <item itemvalue="Application.RunProject2" />
       </list>
     </recent_temporary>
   </component>
@@ -300,7 +331,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613944668463</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Breaking down PayrollProcessing into more helper methods.">
+      <created>1613966585709</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1613966585709</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -346,7 +384,8 @@
     <MESSAGE value="fixed up PayrollProcessing, added try-catches" />
     <MESSAGE value="error in splitting strings and formatted floats, fixed" />
     <MESSAGE value="Extensive updates to try-catch behavior in PayrollProcessing.&#10;&#10;-the try-catch statements should be much more thorough" />
-    <option name="LAST_COMMIT_MESSAGE" value="Extensive updates to try-catch behavior in PayrollProcessing.&#10;&#10;-the try-catch statements should be much more thorough" />
+    <MESSAGE value="Breaking down PayrollProcessing into more helper methods." />
+    <option name="LAST_COMMIT_MESSAGE" value="Breaking down PayrollProcessing into more helper methods." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Project2/src/Fulltime.java">
