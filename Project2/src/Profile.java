@@ -49,6 +49,14 @@ public class Profile
     }
 
     /**
+     * Getter for name of this Employee object.
+     * @return String name instance variable value
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
      * Getter for department title of this Employee object.
      * @return String department instance variable value
      */

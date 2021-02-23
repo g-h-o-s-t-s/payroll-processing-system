@@ -3,8 +3,7 @@
  @author Sagnik Mukherjee, Michael Choe
  */
 @SuppressWarnings("WeakerAccess")
-public class Employee
-{
+public class Employee {
     //object fields
     private Profile profile;
     private double periodEarnings;

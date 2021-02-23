@@ -93,16 +93,10 @@ public class PayrollProcessing
     private void addPartTime(String[] inputs, Company company) {
         if (inputs.length == Consts.FIVEINPUTS) {
             try {
-                String name = inputs[Consts.SPLITTWO];
-                String department = inputs[Consts.SPLITTHREE];
-                String dateStr = inputs[Consts.SPLITFOUR];
-                Date date = new Date(dateStr);
-                validateSharedInput(name, department, date);
+                Profile profile = inputBreakdown(inputs);
 
                 double pay = Double.parseDouble(inputs[Consts.SPLITFIVE]);
                 validatePayRate(pay);
-
-                Profile profile = new Profile(name, department, date);
                 int hw = Consts.DEFAULTHOURS;
 
                 Parttime addThis = new Parttime(profile, pay, hw);
@@ -127,16 +121,11 @@ public class PayrollProcessing
     private void addFullTime(String[] inputs, Company company) {
         if (inputs.length == Consts.FIVEINPUTS) {
             try {
-                String name = inputs[Consts.SPLITTWO];
-                String department = inputs[Consts.SPLITTHREE];
-                String dateStr = inputs[Consts.SPLITFOUR];
-                Date date = new Date(dateStr);
-                validateSharedInput(name, department, date);
+                Profile profile = inputBreakdown(inputs);
 
                 double pay = Double.parseDouble(inputs[Consts.SPLITFIVE]);
                 validateSalary(pay);
 
-                Profile profile = new Profile(name, department, date);
                 Fulltime addThis = new Fulltime(profile, pay);
                 if (company.add(addThis))
                     printout(Consts.ADDED);
@@ -158,14 +147,9 @@ public class PayrollProcessing
      */
     private void addFullRole(String[] inputs, Company company)
     {
-        if (inputs.length == Consts.SIXINPUTS)
-        {
+        if (inputs.length == Consts.SIXINPUTS) {
             try {
-                String name = inputs[Consts.SPLITTWO];
-                String department = inputs[Consts.SPLITTHREE];
-                String dateStr = inputs[Consts.SPLITFOUR];
-                Date date = new Date(dateStr);
-                validateSharedInput(name, department, date);
+                Profile profile = inputBreakdown(inputs);
 
                 double pay = Double.parseDouble(inputs[Consts.SPLITFIVE]);
                 //handles -0.0, though this input is unlikely
@@ -174,7 +158,7 @@ public class PayrollProcessing
                 int code = Integer.parseInt(inputs[Consts.SPLITSIX]);
                 validateCode(code);
 
-                Profile profile = new Profile(name, department, date);
+
                 Management addThis = new Management(profile, pay, code);
                 if (company.add(addThis))
                     printout(Consts.ADDED);
@@ -200,13 +184,8 @@ public class PayrollProcessing
 
         else if (inputs.length == Consts.FOURINPUTS) {
             try {
-                String name = inputs[Consts.SPLITTWO];
-                String department = inputs[Consts.SPLITTHREE];
-                String dateStr = inputs[Consts.SPLITFOUR];
-                Date date = new Date(dateStr);
-                validateSharedInput(name, department, date);
+                Profile profile = inputBreakdown(inputs);
 
-                Profile profile = new Profile(name, department, date);
                 Employee key = new Employee();
                 key.setProfile(profile);
 
@@ -253,16 +232,11 @@ public class PayrollProcessing
 
         else if (inputs.length == Consts.FIVEINPUTS) {
             try {
-                String name = inputs[Consts.SPLITTWO];
-                String department = inputs[Consts.SPLITTHREE];
-                String dateStr = inputs[Consts.SPLITFOUR];
-                Date date = new Date(dateStr);
-                validateSharedInput(name, department, date);
+                Profile profile = inputBreakdown(inputs);
 
                 int hoursToSet = Integer.parseInt(inputs[Consts.SPLITFIVE]);
                 validateHours(hoursToSet);
 
-                Profile profile = new Profile(name, department, date);
                 Parttime key = new Parttime();
                 key.setProfile(profile);
                 key.setHoursWorked(hoursToSet);
@@ -278,6 +252,25 @@ public class PayrollProcessing
         }
         else
             printout(Consts.INVALID_INPUT);
+    }
+
+    /**
+     * Helper method to process input substrings, namely the common ones
+     * among the command-based helper methods. This code appears in five
+     * other methods and was very redundant, so refactoring as a private
+     * method proved to be necessary.
+     * @param inputs String[], contains substrings of user input
+     * @return Profile containing validated information from user input
+     */
+    private Profile inputBreakdown(String[] inputs)
+    {
+        String name = inputs[Consts.SPLITTWO];
+        String department = inputs[Consts.SPLITTHREE];
+        String dateStr = inputs[Consts.SPLITFOUR];
+        Date date = new Date(dateStr);
+        validateSharedInput(name, department, date);
+
+        return new Profile(name, department, date);
     }
 
     /**

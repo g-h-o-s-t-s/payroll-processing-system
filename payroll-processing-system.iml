@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Project2/JUnit Tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/Project2/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Project2/JavaDoc" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/Project2/ClassDiagram" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/Project2" />
     </content>
     <content url="file://$MODULE_DIR$/Project2/JUnit Tests" />

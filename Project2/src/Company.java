@@ -111,7 +111,7 @@ public class Company
             int last = i - 1;
             try
             {
-                emplist[last] = emplist[i];
+                swap(emplist, last, i);
             } catch (ArrayIndexOutOfBoundsException ex)
             {
                 break;
@@ -119,6 +119,19 @@ public class Company
         }
         numEmployee--;
         return true;
+    }
+
+    /**
+     * Helper method for remove().
+     * Swaps two array elements as per selection-sort algorithm.
+     * @param arr container list of Employee objects
+     * @param i index of current element of emplist being considered
+     * @param j index of emplist element being compared with emplist[i]
+     */
+    private void swap(Employee[] arr, int i, int j) {
+        Employee temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 
     /**
@@ -200,7 +213,7 @@ public class Company
 
                 while (j >= 0 && emplist[j] != null
                         && emplist[j].getProfile().getDepartment().compareTo
-                            (key.getProfile().getDepartment()) > 0)
+                        (key.getProfile().getDepartment()) > 0)
                 {
                     emplist[j + 1] = emplist[j];
                     j = j - 1;
@@ -223,7 +236,6 @@ public class Company
      * Helper method for printByDate().
      * Sorts array in ascending order of date that an Employee was hired.
      * @param emplist array containing list of employees
-     *
      */
     private void sortByDate(Employee[] emplist)
     {
